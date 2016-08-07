@@ -39,3 +39,8 @@ widgets, including
 respective JS and CSS files are not required by Autosaveify, they're just
 the widgets that have been tested together with it. Feel free to experiment
 using other custom widgets with Autosaveify.
+
+## License
+
+Copyright Jeremy Epstein
+Licensed under Apache License, Version 2.0
