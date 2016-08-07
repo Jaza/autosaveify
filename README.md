@@ -43,4 +43,5 @@ using other custom widgets with Autosaveify.
 ## License
 
 Copyright Jeremy Epstein
+
 Licensed under Apache License, Version 2.0
