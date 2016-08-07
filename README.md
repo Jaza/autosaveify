@@ -7,16 +7,14 @@ the examples. Then, whenever the user changes the form input values, the form
 will be submitted to the server, and a coloured icon (or status box) will
 indicate when the save is pending, is in progress, has succeeded, or has failed.
 
-## Live demo
-**https://jaza.github.io/autosaveify/demo.html**
+**Demo and examples:** https://jaza.github.io/autosaveify/demo.html
 
-## Documentation
-**https://jaza.github.io/autosaveify/**
+**Documentation:** https://jaza.github.io/autosaveify/
 
-Inspired by [X-editable](https://vitalets.github.io/x-editable/), but aims to
-be simpler and lighter. Rather than providing custom popup or inline editing
-widgets, Autosaveify leaves the form editing interface as-is, and just
-concentrates on communicating the save status to the user.
+Autosaveify is inspired by [X-editable](https://vitalets.github.io/x-editable/),
+but it aims to be simpler and lighter. Rather than providing custom popup or
+inline editing widgets, Autosaveify leaves the form editing interface as-is,
+and just concentrates on communicating the save status to the user.
 
 The style of the JS is inspired by [Twitter Bootstrap](http://getbootstrap.com/).
 Like the Bootstrap JS plugins, Autosaveify can be used purely via the HTML5
@@ -27,11 +25,11 @@ used via a JS API. Also like Bootstrap's JS, Autosaveify depends on
 conventions for options, methods, and custom events.
 
 Autosaveify is designed to be used on a Bootstrap-powered web page (currently
-Bootstrap 3). The CSS and the example markup look good and work properly on
-top of Bootstrap's standard CSS and markup. However, feel free to try it out
-in a non-Bootstrap environment. You will need to write your own CSS to get it
-looking and working as expected (please consider contributing your CSS back
-if you do this).
+compatible wih Bootstrap 3). The CSS and the example markup look good and work
+properly on top of Bootstrap's standard CSS and markup. However, feel free to
+try it out in a non-Bootstrap environment. You will need to write your own CSS
+to get it looking and working as expected (please consider contributing your
+CSS back if you do this).
 
 Autosaveify includes some CSS and some examples that use third-party form
 widgets, including
