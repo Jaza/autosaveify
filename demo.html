@@ -28,6 +28,9 @@
 <h1>Autosaveify examples</h1>
 
 
+<br>
+
+
 <form id="fake-success-form">
 
   <h2>Fake server success?</h2>
@@ -50,6 +53,50 @@
 
 </form>
 
+<h3>Code</h3>
+
+<pre><code>&lt;form id=&quot;fake-success-form&quot;&gt;
+
+  &lt;h2&gt;Fake server success?&lt;/h2&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;div class=&quot;radio&quot;&gt;
+      &lt;label&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;fake_success&quot; id=&quot;fake_success_disabled&quot; value=&quot;disabled&quot; checked&gt;
+        Let &#39;em fail
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;radio&quot;&gt;
+      &lt;label&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;fake_success&quot; id=&quot;fake_success_enabled&quot; value=&quot;enabled&quot;&gt;
+        Fake it!
+      &lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+
+&lt;!-- Autosaveify &quot;Fake it!&quot; toggle for demo --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+(function($, window) {
+
+  $(&#39;#fake-success-form input[name=fake_success]&#39;).change(function() {
+    var $this = $(this);
+
+    $(&#39;form.autosaveify-enabled&#39;).each(function(i) {
+      $(this).data(&#39;autosaveify&#39;).options.fakeSuccess = (
+        $this.val() === &#39;enabled&#39;);
+    });
+  });
+
+}).call(this, jQuery, window);
+&lt;/script&gt;
+</code></pre>
+
+
+<br>
+
 
 <form id="simple-text-form" method="POST" class="form-inline" action="#" data-toggle="autosaveify" data-save-url="#">
 
@@ -61,18 +108,47 @@
     <div class="input-group">
       <input class="form-control autosaveify-field" id="simple_text" name="simple_text" placeholder="Simple text" required type="text" value="">
 
-      <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save"><span class="fa fa-save"></span></span>
+      <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save">
+        <span class="fa fa-save"></span>
+      </span>
     </div>
   </div>
 
   <div class="autosaveify-hide-whenenabled">
-    <br />
+    <br>
     <button type="submit" class="btn btn-default">Update</button>
   </div>
+
 </form>
 
+<h3>Code</h3>
 
-<br />&nbsp;<br />
+<pre><code>&lt;form id=&quot;simple-text-form&quot; method=&quot;POST&quot; class=&quot;form-inline&quot; action=&quot;#&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;h2&gt;Addon icon&lt;/h2&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;simple_text&quot; class=&quot;control-label autosaveify-hide-whenenabled&quot;&gt;Simple text&lt;/label&gt;
+
+    &lt;div class=&quot;input-group&quot;&gt;
+      &lt;input class=&quot;form-control autosaveify-field&quot; id=&quot;simple_text&quot; name=&quot;simple_text&quot; placeholder=&quot;Simple text&quot; required type=&quot;text&quot; value=&quot;&quot;&gt;
+
+      &lt;span class=&quot;btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled&quot; title=&quot;No changes to save&quot;&gt;
+        &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;br /&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+
+<br>&nbsp;<br>&nbsp;<br>
 
 
 <form id="multiple-required-fields-form" method="POST" class="form-horizontal" action="#" data-toggle="autosaveify" data-save-url="#">
@@ -83,7 +159,9 @@
     <h2 class="panel-title autosaveify-saveicon-title">
       Title icon
 
-      <div class="btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper autosaveify-show-whenenabled" title="No changes to save"><span class="fa fa-save"></span></div>
+      <div class="btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper autosaveify-show-whenenabled" title="No changes to save">
+        <span class="fa fa-save"></span>
+      </div>
     </h2>
   </div>
 
@@ -113,6 +191,52 @@
 
 </form>
 
+<h3>Code</h3>
+
+<pre><code>&lt;form id=&quot;multiple-required-fields-form&quot; method=&quot;POST&quot; class=&quot;form-horizontal&quot; action=&quot;#&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+&lt;div class=&quot;panel panel-default&quot;&gt;
+
+  &lt;div class=&quot;panel-heading&quot;&gt;
+    &lt;h2 class=&quot;panel-title autosaveify-saveicon-title&quot;&gt;
+      Title icon
+
+      &lt;div class=&quot;btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper autosaveify-show-whenenabled&quot; title=&quot;No changes to save&quot;&gt;
+        &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/h2&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;panel-body&quot;&gt;
+
+    &lt;div class=&quot;form-group required&quot;&gt;
+      &lt;label class=&quot;control-label col-lg-4&quot; for=&quot;required_field_1&quot;&gt;Required Field 1&lt;/label&gt;
+
+      &lt;div class=&quot; col-lg-8&quot;&gt;
+        &lt;input class=&quot;form-control autosaveify-field&quot; id=&quot;required_field_1&quot; name=&quot;required_field_1&quot; required type=&quot;text&quot; placeholder=&quot;Required Field 1&quot; value=&quot;&quot;&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group required&quot;&gt;
+      &lt;label class=&quot;control-label col-lg-4&quot; for=&quot;required_field_2&quot;&gt;Required Field 2&lt;/label&gt;
+      &lt;div class=&quot; col-lg-8&quot;&gt;
+        &lt;input class=&quot;form-control autosaveify-field&quot; id=&quot;required_field_2&quot; name=&quot;required_field_2&quot; required type=&quot;text&quot; placeholder=&quot;Required Field 2&quot; value=&quot;&quot;&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+      &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;&lt;!-- /.panel-body --&gt;
+&lt;/div&gt;&lt;!-- /.panel --&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+
+<br>
+
 
 <form id="status-box-form" method="POST" class="" action="#" data-toggle="autosaveify" data-save-url="#">
 
@@ -128,8 +252,43 @@
     <button type="submit" class="btn btn-default">Update</button>
   </div>
 
-  <div class="autosaveify-status-wrapper hidden"><p class="autosaveify-status alert alert-default"><span class="autosaveify-status-text">No changes to save</span><span class="fa fa-save"></span></p></div>
+  <div class="autosaveify-status-wrapper hidden">
+    <p class="autosaveify-status alert alert-default">
+      <span class="autosaveify-status-text">No changes to save</span>
+      <span class="fa fa-save"></span>
+    </p>
+  </div>
+
 </form>
+
+<h3>Code</h3>
+
+<pre><code>&lt;form id=&quot;status-box-form&quot; method=&quot;POST&quot; class=&quot;&quot; action=&quot;#&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;h2&gt;Status box&lt;/h2&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;status_box&quot; class=&quot;control-label autosaveify-hide-whenenabled&quot;&gt;Status box&lt;/label&gt;
+
+    &lt;input class=&quot;form-control autosaveify-field&quot; id=&quot;status_box&quot; name=&quot;status_box&quot; placeholder=&quot;Status box&quot; required type=&quot;text&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-status-wrapper hidden&quot;&gt;
+    &lt;p class=&quot;autosaveify-status alert alert-default&quot;&gt;
+      &lt;span class=&quot;autosaveify-status-text&quot;&gt;No changes to save&lt;/span&gt;
+      &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+
+<br>
 
 
 <form id="button-icon-form" method="POST" class="" action="#" data-toggle="autosaveify" data-save-url="#">
@@ -139,7 +298,9 @@
   <div class="form-group autosaveify-button-icon-wrapper">
     <label for="button_icon" class="control-label autosaveify-hide-whenenabled">Button icon</label>
 
-    <div class="btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper autosaveify-show-whenenabled" title="No changes to save"><span class="fa fa-save"></span></div>
+    <div class="btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper autosaveify-show-whenenabled" title="No changes to save">
+      <span class="fa fa-save"></span>
+    </div>
 
     <input class="form-control autosaveify-field" id="button_icon" name="button_icon" placeholder="Button icon" required type="text" value="">
   </div>
@@ -147,7 +308,34 @@
   <div class="autosaveify-hide-whenenabled">
     <button type="submit" class="btn btn-default">Update</button>
   </div>
+
 </form>
+
+<h3>Code</h3>
+
+<pre><code>&lt;form id=&quot;button-icon-form&quot; method=&quot;POST&quot; class=&quot;&quot; action=&quot;#&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;h2&gt;Button icon&lt;/h2&gt;
+
+  &lt;div class=&quot;form-group autosaveify-button-icon-wrapper&quot;&gt;
+    &lt;label for=&quot;button_icon&quot; class=&quot;control-label autosaveify-hide-whenenabled&quot;&gt;Button icon&lt;/label&gt;
+
+    &lt;div class=&quot;btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper autosaveify-show-whenenabled&quot; title=&quot;No changes to save&quot;&gt;
+      &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;input class=&quot;form-control autosaveify-field&quot; id=&quot;button_icon&quot; name=&quot;button_icon&quot; placeholder=&quot;Button icon&quot; required type=&quot;text&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+
+<br>
 
 
 <h2>Form icon</h2>
@@ -179,9 +367,52 @@
     <button type="submit" class="btn btn-default">Update</button>
   </div>
 
-  <div class="btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper hidden" title="No changes to save"><span class="fa fa-save"></span></div>
+  <div class="btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper hidden" title="No changes to save">
+    <span class="fa fa-save"></span>
+  </div>
 
 </form>
+
+<h3>Code</h3>
+
+<pre><code>&lt;h2&gt;Form icon&lt;/h2&gt;
+
+&lt;form id=&quot;form-icon-form&quot; method=&quot;POST&quot; action=&quot;#&quot; class=&quot;autosaveify-button-icon-wrapper&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot; data-hide-on-blur=&quot;1&quot;&gt;
+
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-sm-6&quot;&gt;
+
+  &lt;div class=&quot;form-group required&quot;&gt;
+    &lt;label class=&quot;control-label autosaveify-hide-whenenabled&quot; for=&quot;form_icon_field_1&quot;&gt;Form Icon Field 1&lt;/label&gt;
+
+    &lt;input class=&quot;form-control autosaveify-field&quot; id=&quot;form_icon_field_1&quot; name=&quot;form_icon_field_1&quot; required type=&quot;text&quot; placeholder=&quot;Form Icon Field 1&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+
+    &lt;/div&gt;&lt;!-- /.col-sm-6 --&gt;
+    &lt;div class=&quot;col-sm-6&quot;&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label autosaveify-hide-whenenabled&quot; for=&quot;form_icon_field_2&quot;&gt;Form Icon Field 2&lt;/label&gt;
+
+    &lt;input class=&quot;form-control autosaveify-field&quot; id=&quot;form_icon_field_2&quot; name=&quot;form_icon_field_2&quot; type=&quot;text&quot; placeholder=&quot;Form Icon Field 2&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+
+    &lt;/div&gt;&lt;!-- /.col-sm-6 --&gt;
+  &lt;/div&gt;&lt;!-- /.row --&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper hidden&quot; title=&quot;No changes to save&quot;&gt;
+    &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+
+<br>
 
 
 <h2>Date and time pickers</h2>
@@ -197,11 +428,15 @@
 
     <div class="col-sm-8">
       <div class="input-group">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
 
         <input class="form-control autosaveify-field datepicker-enable" id="date_picker" name="date_picker" placeholder="Date picker" required type="text" value="">
 
-        <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save"><span class="fa fa-save"></span></span>
+        <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save">
+          <span class="fa fa-save"></span>
+        </span>
       </div>
     </div>
   </div>
@@ -209,6 +444,7 @@
   <div class="autosaveify-hide-whenenabled">
     <button type="submit" class="btn btn-default">Update</button>
   </div>
+
 </form>
 
     </div><!-- /.col-sm-5 -->
@@ -222,11 +458,15 @@
 
     <div class="col-sm-8">
       <div class="input-group">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-time"></span>
+        </span>
 
         <input class="form-control autosaveify-field timepicker-enable" id="time_picker" name="time_picker" placeholder="Time picker" required type="text" value="">
 
-        <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save"><span class="fa fa-save"></span></span>
+        <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save">
+          <span class="fa fa-save"></span>
+        </span>
       </div>
     </div>
   </div>
@@ -234,11 +474,114 @@
   <div class="autosaveify-hide-whenenabled">
     <button type="submit" class="btn btn-default">Update</button>
   </div>
+
 </form>
 
     </div><!-- /.col-sm-5 -->
 
   </div><!-- /.row -->
+
+<h3>Code</h3>
+
+<pre><code>&lt;h2&gt;Date and time pickers&lt;/h2&gt;
+
+  &lt;div class=&quot;row&quot;&gt;
+
+    &lt;div class=&quot;col-sm-5 col-sm-offset-1&quot;&gt;
+
+&lt;form id=&quot;date-picker-form&quot; method=&quot;POST&quot; class=&quot;form-horizontal&quot; action=&quot;#&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;date_picker&quot; class=&quot;control-label col-sm-4&quot;&gt;Date picker&lt;/label&gt;
+
+    &lt;div class=&quot;col-sm-8&quot;&gt;
+      &lt;div class=&quot;input-group&quot;&gt;
+        &lt;span class=&quot;input-group-addon&quot;&gt;
+          &lt;span class=&quot;glyphicon glyphicon-calendar&quot;&gt;&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;input class=&quot;form-control autosaveify-field datepicker-enable&quot; id=&quot;date_picker&quot; name=&quot;date_picker&quot; placeholder=&quot;Date picker&quot; required type=&quot;text&quot; value=&quot;&quot;&gt;
+
+        &lt;span class=&quot;btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled&quot; title=&quot;No changes to save&quot;&gt;
+          &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+
+    &lt;/div&gt;&lt;!-- /.col-sm-5 --&gt;
+
+    &lt;div class=&quot;col-sm-5 col-sm-padding-1&quot;&gt;
+
+&lt;form id=&quot;time-picker-form&quot; method=&quot;POST&quot; class=&quot;form-horizontal&quot; action=&quot;#&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;time_picker&quot; class=&quot;control-label col-sm-4&quot;&gt;Time picker&lt;/label&gt;
+
+    &lt;div class=&quot;col-sm-8&quot;&gt;
+      &lt;div class=&quot;input-group&quot;&gt;
+        &lt;span class=&quot;input-group-addon&quot;&gt;
+          &lt;span class=&quot;glyphicon glyphicon-time&quot;&gt;&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;input class=&quot;form-control autosaveify-field timepicker-enable&quot; id=&quot;time_picker&quot; name=&quot;time_picker&quot; placeholder=&quot;Time picker&quot; required type=&quot;text&quot; value=&quot;&quot;&gt;
+
+        &lt;span class=&quot;btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled&quot; title=&quot;No changes to save&quot;&gt;
+          &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+
+    &lt;/div&gt;&lt;!-- /.col-sm-5 --&gt;
+
+  &lt;/div&gt;&lt;!-- /.row --&gt;
+
+&lt;!-- Enable date and time pickers --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+(function($, window) {
+
+  $(&#39;.datepicker-enable&#39;).each(function() {
+    var dpformat = $(this).attr(&#39;data-datepicker-format&#39;)
+      ? $(this).attr(&#39;data-datepicker-format&#39;)
+      : &#39;DD MMM YYYY&#39;;
+
+    $(this).datetimepicker({
+      format: dpformat});
+  });
+
+  $(&#39;.timepicker-enable&#39;).each(function() {
+    var dpformat = $(this).attr(&#39;data-datepicker-format&#39;)
+      ? $(this).attr(&#39;data-datepicker-format&#39;)
+      : &#39;HH:mm&#39;;
+
+    $(this).datetimepicker({
+      format: dpformat});
+  });
+
+  $(&#39;.datepicker-enable, .timepicker-enable&#39;).on(&#39;dp.change&#39;, function(e) {
+      $(this)
+        .trigger(&#39;input&#39;);
+    });
+
+}).call(this, jQuery, window);
+&lt;/script&gt;
+</code></pre>
+
+
+<br>
 
 
 <form id="textarea-form" method="POST" action="#" data-toggle="autosaveify" data-save-url="#">
@@ -255,8 +598,43 @@
     <button type="submit" class="btn btn-default">Update</button>
   </div>
 
-  <div class="autosaveify-status-wrapper hidden"><p class="autosaveify-status alert alert-default"><span class="autosaveify-status-text">No changes to save</span><span class="fa fa-save"></span></p></div>
+  <div class="autosaveify-status-wrapper hidden">
+    <p class="autosaveify-status alert alert-default">
+      <span class="autosaveify-status-text">No changes to save</span>
+      <span class="fa fa-save"></span>
+    </p>
+  </div>
+
 </form>
+
+<h3>Code</h3>
+
+<pre><code>&lt;form id=&quot;textarea-form&quot; method=&quot;POST&quot; action=&quot;#&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;h2&gt;Text area&lt;/h2&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;text_area&quot; class=&quot;control-label autosaveify-hide-whenenabled&quot;&gt;Text area&lt;/label&gt;
+
+    &lt;textarea class=&quot;form-control autosaveify-field&quot; id=&quot;text_area&quot; name=&quot;text_area&quot; placeholder=&quot;Text area&quot; required rows=&quot;10&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-status-wrapper hidden&quot;&gt;
+    &lt;p class=&quot;autosaveify-status alert alert-default&quot;&gt;
+      &lt;span class=&quot;autosaveify-status-text&quot;&gt;No changes to save&lt;/span&gt;
+      &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+
+<br>
 
 
 <h2>Checkbox and radio fields</h2>
@@ -308,9 +686,73 @@
     <button type="submit" class="btn btn-default">Update</button>
   </div>
 
-  <div class="btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper" title="No changes to save"><span class="fa fa-save"></span></div>
+  <div class="btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper" title="No changes to save">
+    <span class="fa fa-save"></span>
+  </div>
 
 </form>
+
+
+<h3>Code</h3>
+
+<pre><code>&lt;h2&gt;Checkbox and radio fields&lt;/h2&gt;
+
+&lt;form id=&quot;checkbox-radio-form&quot; method=&quot;POST&quot; action=&quot;#&quot; class=&quot;autosaveify-button-icon-wrapper&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-sm-6&quot;&gt;
+
+  &lt;div class=&quot;form-group required&quot;&gt;
+    &lt;div class=&quot;radio&quot;&gt;
+      &lt;label&gt;
+        &lt;input class=&quot;autosaveify-field&quot; type=&quot;radio&quot; name=&quot;radio_field&quot; id=&quot;radio_option_1&quot; value=&quot;option1&quot; checked&gt;
+        Radio option 1
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;radio&quot;&gt;
+      &lt;label&gt;
+        &lt;input class=&quot;autosaveify-field&quot; type=&quot;radio&quot; name=&quot;radio_field&quot; id=&quot;radio_option_2&quot; value=&quot;option2&quot;&gt;
+        Radio option 2
+      &lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+    &lt;/div&gt;&lt;!-- /.col-sm-6 --&gt;
+    &lt;div class=&quot;col-sm-6&quot;&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;div class=&quot;checkbox&quot;&gt;
+      &lt;label&gt;
+        &lt;input class=&quot;autosaveify-field&quot; type=&quot;checkbox&quot; name=&quot;checkbox_field_1&quot; id=&quot;checkbox_field_1&quot; value=&quot;&quot;&gt;
+        Checkbox option 1
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;checkbox&quot;&gt;
+      &lt;label&gt;
+        &lt;input class=&quot;autosaveify-field&quot; type=&quot;checkbox&quot; name=&quot;checkbox_field_2&quot; id=&quot;checkbox_field_2&quot; value=&quot;&quot;&gt;
+        Checkbox option 2
+      &lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+    &lt;/div&gt;&lt;!-- /.col-sm-6 --&gt;
+  &lt;/div&gt;&lt;!-- /.row --&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;btn btn-sm btn-default input-group-btn autosaveify-icon-wrapper&quot; title=&quot;No changes to save&quot;&gt;
+    &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+
+<br>
 
 
 <h2>Select field</h2>
@@ -330,14 +772,17 @@
         <option value="select_option_2">Select option 2</option>
       </select>
 
-      <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save"><span class="fa fa-save"></span></span>
+      <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save">
+        <span class="fa fa-save"></span>
+      </span>
     </div>
   </div>
 
   <div class="autosaveify-hide-whenenabled">
-    <br />
+    <br>
     <button type="submit" class="btn btn-default">Update</button>
   </div>
+
 </form>
 
     </div><!-- /.col-sm-6 -->
@@ -355,17 +800,103 @@
         <option value="select2_option_2">Select2 option 2</option>
       </select>
 
-      <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save"><span class="fa fa-save"></span></span>
+      <span class="btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled" title="No changes to save">
+        <span class="fa fa-save"></span>
+      </span>
     </div>
   </div>
 
   <div class="autosaveify-hide-whenenabled">
     <button type="submit" class="btn btn-default">Update</button>
   </div>
+
 </form>
 
     </div><!-- /.col-sm-6 -->
   </div><!-- /.row -->
+
+<h3>Code</h3>
+
+<pre><code>&lt;h2&gt;Select field&lt;/h2&gt;
+
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-sm-6&quot;&gt;
+
+&lt;form id=&quot;select-form&quot; method=&quot;POST&quot; class=&quot;form-inline&quot; action=&quot;#&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;select_field&quot; class=&quot;control-label autosaveify-hide-whenenabled&quot;&gt;Select field&lt;/label&gt;
+
+    &lt;div class=&quot;input-group&quot;&gt;
+      &lt;select class=&quot;form-control autosaveify-field&quot; id=&quot;select_field&quot; name=&quot;select_field&quot; required&gt;
+        &lt;option value=&quot;&quot;&gt;&lt;/option&gt;
+        &lt;option selected value=&quot;select_option_1&quot;&gt;Select option 1&lt;/option&gt;
+        &lt;option value=&quot;select_option_2&quot;&gt;Select option 2&lt;/option&gt;
+      &lt;/select&gt;
+
+      &lt;span class=&quot;btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled&quot; title=&quot;No changes to save&quot;&gt;
+        &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;br /&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+
+    &lt;/div&gt;&lt;!-- /.col-sm-6 --&gt;
+    &lt;div class=&quot;col-sm-6&quot;&gt;
+
+&lt;form id=&quot;select2-form&quot; method=&quot;POST&quot; class=&quot;autosaveify-select2-wrapper&quot; action=&quot;#&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;select2_field&quot; class=&quot;control-label autosaveify-hide-whenenabled&quot;&gt;Select2 field&lt;/label&gt;
+
+    &lt;div class=&quot;input-group select2-bootstrap-append&quot;&gt;
+      &lt;select class=&quot;form-control autosaveify-field select2-enable select2-multiple&quot; id=&quot;select2_field&quot; name=&quot;select2_field&quot; required multiple&gt;
+        &lt;option value=&quot;&quot;&gt;&lt;/option&gt;
+        &lt;option selected value=&quot;select2_option_1&quot;&gt;Select2 option 1&lt;/option&gt;
+        &lt;option value=&quot;select2_option_2&quot;&gt;Select2 option 2&lt;/option&gt;
+      &lt;/select&gt;
+
+      &lt;span class=&quot;btn-default input-group-btn input-group-addon autosaveify-icon-wrapper autosaveify-show-tablecell-whenenabled&quot; title=&quot;No changes to save&quot;&gt;
+        &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+
+    &lt;/div&gt;&lt;!-- /.col-sm-6 --&gt;
+  &lt;/div&gt;&lt;!-- /.row --&gt;
+
+&lt;!-- Enable Select2 widgets --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+(function($, window) {
+
+  $(&#39;.select2-enable&#39;).each(function() {
+    $(this).select2({
+      theme: &#39;bootstrap&#39;});
+  });
+
+  $(&#39;.select2-enable&#39;).on(&#39;change&#39;, function(e) {
+      $(this)
+        .trigger(&#39;input&#39;);
+    });
+
+}).call(this, jQuery, window);
+&lt;/script&gt;
+</code></pre>
+
+
+<br>
 
 
 <form id="dante-textarea-form" method="POST" class="" action="#" data-save-url="#">
@@ -382,11 +913,120 @@
     <button type="submit" class="btn btn-default">Update</button>
   </div>
 
-  <div class="autosaveify-status-wrapper hidden"><p class="autosaveify-status alert alert-default"><span class="autosaveify-status-text">No changes to save</span><span class="fa fa-save"></span></p></div>
+  <div class="autosaveify-status-wrapper hidden">
+    <p class="autosaveify-status alert alert-default">
+      <span class="autosaveify-status-text">No changes to save</span>
+      <span class="fa fa-save"></span>
+    </p>
+  </div>
+
 </form>
 
+<h3>Code</h3>
 
-<br />&nbsp;<br />
+<pre><code>&lt;form id=&quot;dante-textarea-form&quot; method=&quot;POST&quot; class=&quot;&quot; action=&quot;#&quot; data-save-url=&quot;#&quot;&gt;
+
+  &lt;h2&gt;Dante Editor&lt;/h2&gt;
+
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;dante_textarea&quot; class=&quot;control-label autosaveify-hide-whenenabled&quot;&gt;Dante Editor&lt;/label&gt;
+
+    &lt;textarea class=&quot;form-control autosaveify-field dante-enable&quot; id=&quot;dante_textarea&quot; name=&quot;dante_textarea&quot; required rows=&quot;10&quot;&gt;&amp;lt;p&amp;gt;Rich text here!&amp;lt;/p&amp;gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-hide-whenenabled&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Update&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;autosaveify-status-wrapper hidden&quot;&gt;
+    &lt;p class=&quot;autosaveify-status alert alert-default&quot;&gt;
+      &lt;span class=&quot;autosaveify-status-text&quot;&gt;No changes to save&lt;/span&gt;
+      &lt;span class=&quot;fa fa-save&quot;&gt;&lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;/form&gt;
+
+&lt;!-- Enable Dante Editor instances --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+(function($, window) {
+
+  function updateDanteFromTextareas(event) {
+    var ta = $(event.target);
+    if (((event.type == &#39;keyup&#39; || event.type == &#39;paste&#39;) &amp;&amp; ta.is(&#39;:focus&#39;)) || event.type == &#39;blur&#39;) {
+      var elem_jq = $(&#39;#&#39; + ta.attr(&#39;id&#39;) + &#39;-wysiwyg&#39;);
+      elem_jq.html(ta.val());
+    }
+  }
+
+  var elements = document.querySelectorAll(&#39;.dante-enable&#39;);
+
+  $.each(elements, function(i, ta) {
+    var ta_jq = $(ta);
+    var ta_id = ta_jq.attr(&#39;id&#39;);
+    var elem_id = ta_id + &#39;-wysiwyg&#39;;
+
+    ta_jq.after(&#39;&lt;div id=&quot;&#39; + elem_id + &#39;&quot; class=&quot;dante-editable&quot; style=&quot;min-height: 34px&quot;&gt;&lt;/div&gt;&#39;);
+
+    var elem_jq = ta_jq.siblings(&#39;#&#39; + elem_id);
+    var elem = elem_jq[0];
+
+    if (ta_jq.val()) {
+      elem_jq.html(ta_jq.val());
+    }
+
+    var dante_editor_options = {
+      el: elem,
+      upload_url: null,
+      debug: false
+    };
+
+    var editor = new Dante.Editor(dante_editor_options);
+    editor.start();
+
+    $(&#39;body&#39;).on(&#39;input&#39;, elem_jq, function(event) {
+      var c = editor.cleanContents(
+        elem_jq.find(&#39;.section-inner&#39;)
+          .clone());
+
+      if (typeof c !== &#39;undefined&#39;) {
+        c = c.html()
+          .replace(/\&lt;br\&gt;\&lt;\/p\&gt;/g, &#39;&lt;/p&gt;&#39;)
+          .replace(/ class=\&quot;[^\&quot;]+\&quot;/g, &#39;&#39;);
+
+        ta_jq.val(c)
+          .trigger(&#39;keyup&#39;);
+      }
+    });
+
+    ta_jq.hide();
+    $(&#39;body&#39;).on(&#39;blur keyup paste&#39;, ta_jq, updateDanteFromTextareas);
+  });
+
+}).call(this, jQuery, window);
+&lt;/script&gt;
+
+
+&lt;!-- Enable Autosaveify for specific forms --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+(function($, window) {
+
+    $(&#39;#dante-textarea-form&#39;).autosaveify();
+
+}).call(this, jQuery, window);
+&lt;/script&gt;
+</code></pre>
+
+
+<br>&nbsp;<br>
+
+
+<footer class="footer" style="clear: both; padding-top: 10px">
+  <hr>
+  <p>
+    <a href="http://jaza.github.com/autosaveify/">Autosaveify</a> copyright Jeremy Epstein. Licensed under Apache License, Version 2.0.
+  </p>
+</footer>
 
 
     </div>
