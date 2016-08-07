@@ -8,6 +8,17 @@
   <title>Autosaveify</title>
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+<style type="text/css">
+@media (min-width: 768px) {
+  .github-link {
+    text-align: right;
+    margin-top: 20px;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -17,10 +28,280 @@
     <div class="col-sm-12">
 
 
+  <div class="row">
+    <div class="col-sm-8">
+
 <h1>Autosaveify</h1>
 
+    </div><!-- /.col-sm-8 -->
+    <div class="col-sm-4">
 
-<p class="lead">Automatic AJAX form submission with feedback and styling. <a href="./demo.html">See demo</a>.</p>
+<p class="github-link">
+  <a href="https://github.com/Jaza/autosaveify">
+    <i class="fa fa-github"></i>
+    GitHub
+  </a>
+</p>
+
+
+    </div><!-- ./col-sm-4 -->
+  </div><!-- /.row -->
+
+
+<br>
+
+
+<p class="lead">Automatic AJAX form submission with feedback and styling. <a href="./demo.html">See demo and examples</a>.</p>
+
+
+<br>
+
+
+<h2>Installation</h2>
+
+<br>
+
+<p>Download latest autosaveify.css from:</p>
+
+<p><a href="https://github.com/Jaza/autosaveify/tree/master/css">https://github.com/Jaza/autosaveify/tree/master/css</a></p>
+
+<br>
+
+<p>Download latest autosaveify.js from:</p>
+
+<p><a href="https://github.com/Jaza/autosaveify/tree/master/js">https://github.com/Jaza/autosaveify/tree/master/js</a></p>
+
+<br>
+
+<p>Include necessary scripts and styles:</p>
+
+<pre><code>&lt;head&gt;
+  &lt;!-- ... --&gt;
+
+  &lt;link href=&quot;path/to/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; &gt;
+
+  &lt;link href=&quot;path/to/autosaveify.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;!-- ... --&gt;
+
+  &lt;script src=&quot;path/to/jquery.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;path/to/underscore-min.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;path/to/autosaveify.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+
+<br>
+
+
+<h2>Usage</h2>
+
+<br>
+
+<p>Set <code>data-toggle="autosaveify"</code> on a form element, along with <code>data-save-url="http://host.name/endpoint"</code> (if not provided, the form's <code>action</code> value will be used as the save URL). AJAX requests will be made using the HTTP method specified in the form's <code>method</code> value.</p>
+
+<pre><code>&lt;form id=&quot;foo-form&quot; method=&quot;POST&quot; action=&quot;http://host.name/foo/save&quot; data-toggle=&quot;autosaveify&quot; data-save-url=&quot;http://host.name/foo/ajax-save&quot;&gt;
+  &lt;!-- form elements here --&gt;
+&lt;/form&gt;
+</code></pre>
+
+<br>
+
+<p>Alternatively, call Autosaveify with a single line of JavaScript.</p>
+
+<pre><code>$(&#39;#foo-form&#39;).autosaveify(options);
+</code></pre>
+
+
+<br>
+
+
+<h2>Options</h2>
+
+<br>
+
+<p>Options can be passed via data attributes or JavaScript.</p>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>data attribute</th>
+        <th>type</th>
+        <th>default</th>
+        <th>description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td><code>fakeSuccess</code></td>
+        <td><code>data-fake-success</code></td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>Instead of actually making AJAX requests, Autosaveify "fakes it" by simply showing the "success" icon or status box. Useful for testing the success styling when no back-end server is available.</td>
+      </tr>
+
+      <tr>
+        <td><code>hideOnBlur</code></td>
+        <td><code>data-hide-on-blur</code></td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>Hides the autosaveify icon whenever an element in an Autosaveify form loses focus. Only applies when using the icon markup; when using the status box markup, the status box is always hidden on blur.</td>
+      </tr>
+
+      <tr>
+        <td><code>pendingDelayInMs</code></td>
+        <td><code>data-pending-delay-in-ms</code></td>
+        <td>integer</td>
+        <td>2000</td>
+        <td>How long to wait (in milliseconds) for a user to stop typing, before attempting to do an autosave.</td>
+      </tr>
+
+      <tr>
+        <td><code>saveUrl</code></td>
+        <td><code>data-save-url</code></td>
+        <td>path</td>
+        <td>none</td>
+        <td>Makes an AJAX request to this URL on save. If not provided, the form's <code>action</code> value is used as the save URL.</td>
+      </tr>
+
+      <tr>
+        <td><code>successMsgDurationInMs</code></td>
+        <td><code>data-success-msg-duration-in-ms</code></td>
+        <td>integer</td>
+        <td>5000</td>
+        <td>How long the success message should stay visible each time it shows.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div><!-- /.table-responsive -->
+
+<br>
+
+<h2>Methods</h2>
+
+<br>
+
+<h4><code>.autosaveify(options)</code></h4>
+
+<p>Activates your form with Autosaveify. Accepts an optional options <code>object</code>.</p>
+
+<pre><code>$(&#39;#foo-form&#39;).autosaveify({
+  saveUrl: &#39;http://host.name/foo/save&#39;
+});
+</code></pre>
+
+<br>
+
+<h4><code>.autosaveify('validate')</code></h4>
+
+<p>Checks that all required form fields have been filled in, and that no autosave is already in progress. If validation passes, shows the warning message "Unsaved changes". If validation fails, shows a warning message indicating the problem.</p>
+
+<pre><code>$(&#39;#foo-form&#39;).autosaveify(&#39;validate&#39;);
+</code></pre>
+
+<br>
+
+<h4><code>.autosaveify('save')</code></h4>
+
+<p>Saves the form via an AJAX request, after <code>pendingDelayInMs</code> time has elapsed. If this function is called again, for the same form, before the time has elapsed, then the timer is reset. So, as long as the user continues changing input values without pausing for more than "x" seconds, the save is not performed. Only after the user stops editing the form for more than "x" seconds does the save happen.</p>
+
+<pre><code>$(&#39;#foo-form&#39;).autosaveify(&#39;save&#39;);
+</code></pre>
+
+<br>
+
+<h4><code>.autosaveify('saveIfValid')</code></h4>
+
+<p>Calls <code>.autosaveify('save')</code> only if <code>.autosaveify('validate')</code> returns <code>true</code>.</p>
+
+<pre><code>$(&#39;#foo-form&#39;).autosaveify(&#39;saveIfValid&#39;);
+</code></pre>
+
+<br>
+
+<h4><code>.autosaveify('showStatus')</code></h4>
+
+<p>Shows the Autosaveify icon(s) or status box(es) for the selected form.</p>
+
+<pre><code>$(&#39;#foo-form&#39;).autosaveify(&#39;showStatus&#39;);
+</code></pre>
+
+<br>
+
+<h4><code>.autosaveify('hideStatus')</code></h4>
+
+<p>Hides the Autosaveify icon(s) or status box(es) for the selected form.</p>
+
+<pre><code>$(&#39;#foo-form&#39;).autosaveify(&#39;hideStatus&#39;);
+</code></pre>
+
+<br>
+
+<h4><code>.autosaveify('destroy')</code></h4>
+
+<p>Removes Autosaveify functionality from the selected form and removes all attached event handlers.</p>
+
+<pre><code>$(&#39;#foo-form&#39;).autosaveify(&#39;destroy&#39;);
+</code></pre>
+
+<br>
+
+<h2>Events</h2>
+
+<br>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Event Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>save.autosaveify</td>
+        <td>This event fires when the <code>save</code> instance method is called, but not until after <code>pendingDelayInMs</code> time has elapsed with no user form input.</td>
+      </tr>
+
+      <tr>
+        <td>saved.autosaveify</td>
+        <td>This event is fired when the save AJAX request has completed. It fires whether the AJAX request succeeds or fails. If the <code>fakeSuccess</code> option is enabled, then this event is fired immediately after <code>save.autosaveify</code> fires.</td>
+      </tr>
+
+      <tr>
+        <td>validate.autosaveify</td>
+        <td>This event fires when the <code>validate</code> instance method is called.</td>
+      </tr>
+
+      <tr>
+        <td>validated.autosaveify</td>
+        <td>This event is fired when Autosaveify validation has completed. It fires whether the validation succeeds or fails.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div><!-- /.table-responsive -->
+
+<br>&nbsp;<br>
+
+
+<footer class="footer">
+  <hr>
+  <p>
+    <a href="http://jaza.github.com/autosaveify/">Autosaveify</a> copyright Jeremy Epstein. Licensed under Apache License, Version 2.0.
+  </p>
+</footer>
 
 
     </div>
