@@ -22,7 +22,7 @@
     this.init(el, options);
   }
 
-  Autosaveify.VERSION = '0.1';
+  Autosaveify.VERSION = '0.1.0';
 
   Autosaveify.DEFAULTS = {
     // How long to wait (in milliseconds) for a user to stop typing,
