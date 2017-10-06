@@ -22,7 +22,7 @@
     this.init(el, options);
   }
 
-  Autosaveify.VERSION = '0.1.0';
+  Autosaveify.VERSION = '0.1.1';
 
   Autosaveify.DEFAULTS = {
     // How long to wait (in milliseconds) for a user to stop typing,
@@ -157,11 +157,16 @@
     }
   };
 
-  Autosaveify.prototype.showSuccessMsg = function() {
+  Autosaveify.prototype.showSuccessMsg = function(serverMsg) {
     var $this = this;
 
+    var msg = 'Saved';
+    if (serverMsg) {
+      msg += ': ' + serverMsg;
+    }
+
     clearTimeout(this.successMsgTimeout);
-    this.showMsg('Saved', 'success');
+    this.showMsg(msg, 'success');
 
     this.successMsgTimeout = setTimeout(
       function() {
@@ -206,22 +211,28 @@
         data: formData
       })
       .done(function(data, textStatus, jqXHR) {
-        if (data === 'OK') {
-          // Yay! Autosave worked.
-          $this.showSuccessMsg();
-        }
-        else {
-          // Autosave failed because of some validation
-          // failing in server submit handler.
-          $this.showMsg(('Autosave failed: ' + data), 'danger');
-        }
+        // Yay! Autosave worked. The server may include a custom
+        // success message in its response text.
+        // Any failure due to validation error should return a status
+        // other than 200 (e.g. 400), which will be caught by the fail()
+        // handler.
+        $this.showSuccessMsg(data);
       })
       .fail(function(jqXHR, textStatus, errorThrown) {
         var errorMsg = 'Autosave failed: ';
         if (errorThrown) {
           // Autosave failed due to server returning
-          // bad status (probably 500 error).
-          errorMsg += 'server encountered an error';
+          // bad status.
+          if (jqXHR.responseText) {
+            // Response text provided, could be a 400 error, in which
+            // case the response text probably contains a reason why
+            // validation failed.
+            errorMsg += jqXHR.responseText;
+          }
+          else {
+            // No response text, probably a 500 error.
+            errorMsg += 'server encountered an error';
+          }
         }
         else {
           // Autosave failed due to server not being
