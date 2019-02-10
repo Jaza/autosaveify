@@ -179,6 +179,22 @@
         <td>How long the success message should stay visible each time it shows.</td>
       </tr>
 
+      <tr>
+        <td><code>responseTextMaxSize</code></td>
+        <td><code>data-response-text-max-size</code></td>
+        <td>integer</td>
+        <td>100</td>
+        <td>Max size of error response text to receive from the server. If error response text is bigger than this, and if a default error message is available for the HTTP status code in question, then the default message is used. Set to 0 to disable.</td>
+      </tr>
+
+      <tr>
+        <td><code>defaultErrorMsgs</code></td>
+        <td><code>data-default-error-msgs</code></td>
+        <td>object</td>
+        <td><code>{0: "couldn't connect to server", 400: 'bad request', 401: 'unauthorized', 403: 'access denied', 404: 'not found', 500: 'server encountered an error', 502: 'bad gateway', 503: 'service unavailable', 504: 'gateway timeout'}</code></td>
+        <td>Default error messages for various HTTP status codes. If error response text received from the server is empty, or is bigger than the maximum allowed size, and if a default error message is available for the HTTP status code in question, then the default message is used.</td>
+      </tr>
+
     </tbody>
   </table>
 </div><!-- /.table-responsive -->
