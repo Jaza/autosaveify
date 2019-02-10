@@ -22,7 +22,7 @@
     this.init(el, options);
   }
 
-  Autosaveify.VERSION = '0.1.1';
+  Autosaveify.VERSION = '0.1.2';
 
   Autosaveify.DEFAULTS = {
     // How long to wait (in milliseconds) for a user to stop typing,
@@ -32,7 +32,19 @@
     successMsgDurationInMs: 5000,
     hideOnBlur: false,
     fakeSuccess: false,
-    saveUrl: null
+    saveUrl: null,
+    responseTextMaxSize: 100,
+    defaultErrorMsgs: {
+      0: "couldn't connect to server",
+      400: 'bad request',
+      401: 'unauthorized',
+      403: 'access denied',
+      404: 'not found',
+      500: 'server encountered an error',
+      502: 'bad gateway',
+      503: 'service unavailable',
+      504: 'gateway timeout'
+    }
   };
 
   Autosaveify.prototype.init = function(el, options) {
@@ -223,7 +235,20 @@
         if (errorThrown) {
           // Autosave failed due to server returning
           // bad status.
-          if (jqXHR.responseText) {
+          if ($this.options.defaultErrorMsgs.hasOwnProperty(jqXHR.status) &&
+              (
+                (
+                  $this.options.responseTextMaxSize &&
+                  jqXHR.responseText.length > $this.options.responseTextMaxSize) ||
+                !jqXHR.responseText)) {
+            // Error is one for which we have a default error message configured,
+            // and the response text is either bigger than the configured maximum
+            // length (probably because it's the server's standard massive HTML
+            // 404 / 403 response), or is empty. So show the default error
+            // message.
+            errorMsg += $this.options.defaultErrorMsgs[jqXHR.status];
+          }
+          else if (jqXHR.responseText) {
             // Response text provided, could be a 400 error, in which
             // case the response text probably contains a reason why
             // validation failed.
@@ -231,13 +256,23 @@
           }
           else {
             // No response text, probably a 500 error.
-            errorMsg += 'server encountered an error';
+            if ($this.options.defaultErrorMsgs.hasOwnProperty(jqXHR.status)) {
+              errorMsg += $this.options.defaultErrorMsgs[jqXHR.status];
+            }
+            else {
+              errorMsg += 'server encountered an error';
+            }
           }
         }
         else {
           // Autosave failed due to server not being
           // reached (probably network error).
-          errorMsg += "couldn't connect to server";
+          if ($this.options.defaultErrorMsgs.hasOwnProperty(0)) {
+            errorMsg += $this.options.defaultErrorMsgs[0];
+          }
+          else {
+            errorMsg += "couldn't connect to server";
+          }
         }
 
         $this.showMsg(errorMsg, 'danger');
